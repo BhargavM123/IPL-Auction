@@ -74,13 +74,14 @@ class _SignUpState extends State<SignUp> {
         child: Column(
           children: <Widget>[
             Container(
-              height: 400,
+              height: 440,
               child: Image(
-                image: AssetImage("images/login.jpg"),
+                image: AssetImage("images/startupAuction.png"),
                 fit: BoxFit.contain,
               ),
             ),
             Container(
+              margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -128,7 +129,7 @@ class _SignUpState extends State<SignUp> {
                               color: Colors.white,
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold)),
-                      color: Colors.blueGrey,
+                      color: Colors.indigo,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),

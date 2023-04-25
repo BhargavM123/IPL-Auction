@@ -111,8 +111,26 @@ class _ItemDetailsState extends State<ItemDetails> {
       position: RelativeRect.fromLTRB(25.0, 25.0, 0.0, 0.0),
       //position where you want to show the menu on screen
       items: [
-        PopupMenuItem<String>(child: const Text('My posted items'), value: '1'),
-        PopupMenuItem<String>(child: const Text('Logout'), value: '3'),
+        PopupMenuItem<String>(child: Row(
+          children: [
+            Icon(Icons.chrome_reader_mode),
+            SizedBox(
+              // sized box with width 10
+              width: 10,
+            ),
+            Text("My Players")
+          ],
+        ), value: '1'),
+        PopupMenuItem<String>(child: Row(
+          children: [
+            Icon(Icons.logout),
+            SizedBox(
+              // sized box with width 10
+              width: 10,
+            ),
+            Text("Logout")
+          ],
+        ), value: '3'),
       ],
       elevation: 8.0,
     ).then<void>((String itemSelected) {
@@ -230,9 +248,10 @@ class _ItemDetailsState extends State<ItemDetails> {
     final Posts todo = ModalRoute.of(context).settings.arguments;
     return Scaffold(
         resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.teal.shade50,
         appBar: AppBar(
           centerTitle: true,
-          title: Text('Item Details'),
+          title: Text('Player Details'),
           leading: IconButton(
             onPressed: () {
               debugPrint("Form button clicked");
@@ -253,7 +272,7 @@ class _ItemDetailsState extends State<ItemDetails> {
             child: Column(children: <Widget>[
           Container(
             child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Row(
                     children: <Widget>[
@@ -261,8 +280,8 @@ class _ItemDetailsState extends State<ItemDetails> {
                         padding: EdgeInsets.all(10.0),
                         child: Image.network(
                           todo.ImageURL,
-                          height: 300.0,
-                          width: 300.0,
+                          height: 200.0,
+                          width: 200.0,
                           alignment: Alignment.center,
                         ),
                       ),
@@ -275,131 +294,34 @@ class _ItemDetailsState extends State<ItemDetails> {
                   ),
                 ]),
           ),
+              Container(
+                  child: Column(children: <Widget>[
+              DataTable(
+                columns: [
+                  DataColumn(label: Text('Player')),
+                  DataColumn(label: Text('Info')),
+                ],
+                rows: [
+                  DataRow(cells: [
+                    DataCell(Text('Name')),
+                    DataCell(Text(todo.Name)),
+                  ]),
+                  DataRow(cells: [
+                    DataCell(Text('Description')),
+                    DataCell(Text(todo.Description)),
+                  ]),
+                  DataRow(cells: [
+                    DataCell(Text('Base Price')),
+                    DataCell(Text(todo.Minimum_Bid_Price)),
+                  ]),
+                  DataRow(cells: [
+                    DataCell(Text('EndDate')),
+                    DataCell(Text(todo.End_Date)),
+                  ]),
+                ],
+              ),])),
           Container(
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        "Name: ",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-
-                      //child: Text("Geeks",style: TextStyle(color:Colors.black,fontSize:25),),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        todo.Name,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-
-                      //child: Text("For",style: TextStyle(color:Colors.black,fontSize:25),),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                ]),
-          ),
-          Container(
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        "Description: ",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-
-                      //child: Text("Geeks",style: TextStyle(color:Colors.black,fontSize:25),),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        todo.Description,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-
-                      //child: Text("For",style: TextStyle(color:Colors.black,fontSize:25),),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                ]),
-          ),
-          Container(
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        "Minimum Bid Price: ",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-
-                      //child: Text("Geeks",style: TextStyle(color:Colors.black,fontSize:25),),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        "${todo.Minimum_Bid_Price} Taka",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-
-                      //child: Text("For",style: TextStyle(color:Colors.black,fontSize:25),),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                ]),
-          ),
-          Container(
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        "End Date: ",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-
-                      //child: Text("Geeks",style: TextStyle(color:Colors.black,fontSize:25),),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        todo.End_Date,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-
-                      //child: Text("For",style: TextStyle(color:Colors.black,fontSize:25),),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                ]),
-          ),
-          Container(
+              margin: EdgeInsets.fromLTRB(10,10,10,0),
               child: Column(children: <Widget>[
             Padding(
               padding: EdgeInsets.all(10.0),
@@ -414,7 +336,7 @@ class _ItemDetailsState extends State<ItemDetails> {
               child: ElevatedButton(
                 style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all(Colors.blueGrey)),
+                        MaterialStateProperty.all(Colors.teal)),
                 child: Text("Bid"),
                 onPressed: () {
                   if (isNumber(bid.text)) {
@@ -433,9 +355,11 @@ class _ItemDetailsState extends State<ItemDetails> {
                   Row(
                     children: <Widget>[
                       Text(
-                        "Bid Winner ",
+                        "Bid Winner :-",
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(fontWeight: FontWeight.bold,
+                          fontSize: 18),
+
                       ),
 
                       //child: Text("Geeks",style: TextStyle(color:Colors.black,fontSize:25),),
@@ -450,11 +374,16 @@ class _ItemDetailsState extends State<ItemDetails> {
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,
-                                backgroundColor: Colors.lightGreenAccent)),
+                                color: Colors.deepPurple,
+                                decoration: TextDecoration.underline,
+                                decorationColor: Colors.black45,
+                                decorationThickness: 3, //decoration 'underline' thickness
+                                fontStyle: FontStyle.italic
+                                ),
                       ),
 
                       //child: Text("For",style: TextStyle(color:Colors.black,fontSize:25),),
-                    ],
+                      )],
                   ),
                   SizedBox(
                     height: 20.0,
@@ -498,7 +427,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                     textAlign: TextAlign.center,
                   ),
                   new Text(
-                    "${bid} Taka",
+                    "${bid} cr",
                     style: Theme.of(context).textTheme.subtitle1,
                     textAlign: TextAlign.center,
                   ),

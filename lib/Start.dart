@@ -45,6 +45,7 @@ class _StartState extends State<Start> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.teal.shade50,
       body: Container(
         child: Column(
           children: <Widget>[
@@ -52,7 +53,7 @@ class _StartState extends State<Start> {
             Container(
               height: 400,
               child: Image(
-                image: AssetImage("images/start.jpg"),
+                image: AssetImage("images/startupAuction.png"),
                 fit: BoxFit.contain,
               ),
             ),
@@ -66,7 +67,7 @@ class _StartState extends State<Start> {
                         color: Colors.black),
                     children: <TextSpan>[
                   TextSpan(
-                      text: 'Auction App',
+                      text: 'IPL Auction',
                       style: TextStyle(
                           fontSize: 30.0,
                           fontWeight: FontWeight.bold,
@@ -90,7 +91,7 @@ class _StartState extends State<Start> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    color: Colors.deepPurpleAccent),
+                    color: Colors.deepPurple),
                 SizedBox(width: 20.0),
                 RaisedButton(
                     padding: EdgeInsets.only(left: 30, right: 30),
@@ -106,7 +107,7 @@ class _StartState extends State<Start> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    color: Colors.blueGrey),
+                    color: Colors.deepPurple),
               ],
             ),
             SizedBox(height: 20.0),

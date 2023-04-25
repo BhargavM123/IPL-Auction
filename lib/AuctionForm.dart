@@ -49,8 +49,7 @@ class _AuctionFormState extends State<AuctionForm> {
     });
   }
 
-  Future<void> addData(File sampleImage, String name, String des,
-      String min_bid, String date) async {
+  Future<void> addData(File sampleImage, String name, String des, String min_bid, String date) async {
     String fileName = sampleImage.path;
     StorageReference firebaseStorageRef =
         FirebaseStorage.instance.ref().child(fileName);
@@ -121,8 +120,26 @@ class _AuctionFormState extends State<AuctionForm> {
       position: RelativeRect.fromLTRB(25.0, 25.0, 0.0, 0.0),
       //position where you want to show the menu on screen
       items: [
-        PopupMenuItem<String>(child: const Text('My posted items'), value: '1'),
-        PopupMenuItem<String>(child: const Text('Logout'), value: '2'),
+        PopupMenuItem<String>(child: Row(
+          children: [
+            Icon(Icons.chrome_reader_mode),
+            SizedBox(
+              // sized box with width 10
+              width: 10,
+            ),
+            Text("My Items"),
+          ],
+        ), value: '1'),
+        PopupMenuItem<String>(child: Row(
+          children: [
+            Icon(Icons.logout),
+            SizedBox(
+              // sized box with width 10
+              width: 10,
+            ),
+            Text("Logout")
+          ],
+        ), value: '2'),
       ],
       elevation: 8.0,
     ).then<void>((String itemSelected) {
@@ -165,7 +182,7 @@ class _AuctionFormState extends State<AuctionForm> {
               colorScheme: ColorScheme.dark(
                 primary: Colors.deepPurple,
                 onPrimary: Colors.white,
-                surface: Colors.blueGrey,
+                surface: Colors.lightBlueAccent,
                 onSurface: Colors.black54,
               ),
               dialogBackgroundColor: Colors.white,
@@ -187,8 +204,9 @@ class _AuctionFormState extends State<AuctionForm> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.teal.shade50,
         appBar: AppBar(
-          title: Text("Auction Form"),
+          title: Text("Player Auction Form"),
           actions: [
             IconButton(
               onPressed: showPopupMenu,
@@ -203,6 +221,7 @@ class _AuctionFormState extends State<AuctionForm> {
                 return Text(snapshot.error.toString());
               } else {
                 return Container(
+                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
                   child: !isloggedin
                       ? SizedBox(
                           height: MediaQuery.of(context).size.height / 1.3,
@@ -218,9 +237,9 @@ class _AuctionFormState extends State<AuctionForm> {
                               child: ElevatedButton(
                                 style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
-                                        Colors.blueGrey)),
+                                        Colors.teal)),
                                 child: sampleImage == null
-                                    ? Text('Upload an image')
+                                    ? Text('Upload Player Image')
                                     : enableUpload(),
                                 onPressed: getImage,
                               ),
@@ -231,7 +250,7 @@ class _AuctionFormState extends State<AuctionForm> {
                               child: TextField(
                                   controller: name,
                                   decoration: InputDecoration(
-                                    hintText: 'Name',
+                                    hintText: 'Player Name',
                                   )),
                             ),
                             SizedBox(height: 10.0),
@@ -240,7 +259,7 @@ class _AuctionFormState extends State<AuctionForm> {
                               child: TextField(
                                   controller: description,
                                   decoration: InputDecoration(
-                                    hintText: 'Description',
+                                    hintText: 'Player Description',
                                   )),
                             ),
                             SizedBox(height: 10.0),
@@ -249,7 +268,7 @@ class _AuctionFormState extends State<AuctionForm> {
                               child: TextField(
                                   controller: min_bidprice,
                                   decoration: InputDecoration(
-                                    hintText: 'Minimum Bid Price',
+                                    hintText: 'Base Value',
                                   )),
                             ),
                             SizedBox(height: 10.0),
@@ -271,8 +290,8 @@ class _AuctionFormState extends State<AuctionForm> {
                                     style: ButtonStyle(
                                         backgroundColor:
                                             MaterialStateProperty.all(
-                                                Colors.blueGrey)),
-                                    child: Text("Save"),
+                                                Colors.teal)),
+                                    child: Text("SUBMIT"),
                                     onPressed: () {
                                       addData(
                                           sampleImage,

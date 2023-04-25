@@ -95,8 +95,26 @@ class _HomePageState extends State<HomePage> {
       position: RelativeRect.fromLTRB(25.0, 25.0, 0.0, 0.0),
       //position where you want to show the menu on screen
       items: [
-        PopupMenuItem<String>(child: const Text('My posted items'), value: '1'),
-        PopupMenuItem<String>(child: const Text('Logout'), value: '2'),
+        PopupMenuItem<String>(child: Row(
+          children: [
+            Icon(Icons.chrome_reader_mode),
+            SizedBox(
+              // sized box with width 10
+              width: 10,
+            ),
+            Text("My Items")
+          ],
+        ), value: '1'),
+        PopupMenuItem<String>(child: Row(
+          children: [
+            Icon(Icons.logout),
+            SizedBox(
+              // sized box with width 10
+              width: 10,
+            ),
+            Text("Logout")
+          ],
+        ), value: '2'),
       ],
       elevation: 8.0,
     ).then<void>((String itemSelected) {
@@ -120,9 +138,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.teal.shade50,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Auction App'),
+        title: Text('IPL Players Auction'),
         leading: IconButton(
           onPressed: () {
             debugPrint("Form button clicked");
@@ -157,9 +176,10 @@ class _HomePageState extends State<HomePage> {
                       postsList[index].AuctionID);
                 }),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        backgroundColor: Colors.lightBlueAccent,
+      floatingActionButton: FloatingActionButton.extended(
+        icon: const Icon(Icons.add),
+        label: const Text('Add Bid'),
+        backgroundColor: Colors.deepPurple,
         onPressed: () {
           debugPrint("Form button clicked");
           Navigator.push(context, MaterialPageRoute(builder: (context) {

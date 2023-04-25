@@ -103,8 +103,26 @@ class _UsersItemState extends State<UsersItem> {
       position: RelativeRect.fromLTRB(25.0, 25.0, 0.0, 0.0),
       //position where you want to show the menu on screen
       items: [
-        PopupMenuItem<String>(child: const Text('My posted items'), value: '1'),
-        PopupMenuItem<String>(child: const Text('Logout'), value: '3'),
+        PopupMenuItem<String>(child: Row(
+          children: [
+            Icon(Icons.chrome_reader_mode),
+            SizedBox(
+              // sized box with width 10
+              width: 10,
+            ),
+            Text("My Items")
+          ],
+        ), value: '1'),
+        PopupMenuItem<String>(child: Row(
+          children: [
+            Icon(Icons.logout),
+            SizedBox(
+              // sized box with width 10
+              width: 10,
+            ),
+            Text("Logout")
+          ],
+        ), value: '3'),
       ],
       elevation: 8.0,
     ).then<void>((String itemSelected) {
@@ -122,6 +140,7 @@ class _UsersItemState extends State<UsersItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.teal.shade50,
       appBar: AppBar(
         centerTitle: true,
         title: Text('My Items'),
@@ -159,7 +178,7 @@ class _UsersItemState extends State<UsersItem> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        backgroundColor: Colors.brown,
+        backgroundColor: Colors.deepPurple,
         onPressed: () {
           debugPrint("Form button clicked");
           Navigator.push(context, MaterialPageRoute(builder: (context) {

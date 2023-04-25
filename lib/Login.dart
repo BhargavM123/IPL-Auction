@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'SignUp.dart';
@@ -73,13 +74,15 @@ class _LoginState extends State<Login> {
         child: Column(
           children: <Widget>[
             Container(
+              margin: EdgeInsets.fromLTRB(0, 18, 0, 0),
               height: 400,
               child: Image(
-                image: AssetImage("images/login.jpg"),
+                image: AssetImage("images/startupAuction.png"),
                 fit: BoxFit.contain,
               ),
             ),
             Container(
+              margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: Form(
                 key: _formKey,
                 child: Column(
